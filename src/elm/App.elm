@@ -8,6 +8,9 @@ module App exposing (main)
 import Html exposing (Html, div, p, text, program)
 import Layout.Components exposing (application)
 
+import Weather
+
+
 -- MESSAGES
 type Msg
     = Nop

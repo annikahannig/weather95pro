@@ -16,6 +16,10 @@
     min-height: 40px;
 }
 
+.app-header .navbar {
+   padding:  2px 12px;
+}
+
 
 .app-main {
     display: flex;
