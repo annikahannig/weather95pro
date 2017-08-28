@@ -1,0 +1,45 @@
+
+/*
+ * main.css
+ */
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+.app-header {
+    display: flex;
+    flex: 0 0;
+    min-height: 40px;
+}
+
+
+.app-main {
+    display: flex;
+    flex: 1;
+}
+
+.app-footer {
+    display: flex;
+    flex: 0;
+    min-height: 14px;
+    background: #00aaaa;
+}
+
+.app-footer p {
+   padding: 0px;
+   margin:  0px 12px;
+   color: #000000;
+}
+
+.footer-content {
+    width: 100%;
+}
+
+.app-footer .text-warning {
+    color: #aa0000;
+}
+
