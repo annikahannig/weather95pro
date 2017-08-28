@@ -6,6 +6,11 @@ module App exposing (main)
 
 -- IMPORTS
 import Html exposing (Html, div, p, text, program)
+import Layout.Components exposing (application)
+
+-- MESSAGES
+type Msg
+    = Nop
 
 
 -- MODEL
@@ -13,13 +18,10 @@ type alias Model =
     { foo : Int }
 
 
+initialModel : Model
 initialModel =
     { foo = 23 }
 
-
--- MESSAGES
-type Msg
-    = Nop
 
 
 -- INITIALIZATION
@@ -34,12 +36,18 @@ subscriptions model = Sub.none
 
 
 -- VIEW
-view : Model -> Html Msg
-view model =
+mainView : Model -> Html Msg
+mainView model =
     div []
         [ text "Fooo"
         , text (toString model.foo)
         ]
+
+
+view : Model -> Html Msg
+view model =
+    application (mainView model)
+
 
 
 -- UPDATE
