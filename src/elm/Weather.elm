@@ -35,8 +35,6 @@ locationQueryApiUrl location =
                   , "&format=json"
                   ]
 
-
-
 -- VIEWS
 
 weatherFrame : Model -> Html msg
@@ -58,13 +56,16 @@ weatherFrame model =
 dateTime : Model -> Html msg
 dateTime model =
     p [ class "datetime" ]
-      [ text (Time.Format.format "%a %b %d %H:%M:%S %Y" model.now) ]
+      [ case model.now of 
+            0 -> text ""
+            t -> text (Time.Format.format "%a %b %d %H:%M:%S %Y" t) ]
 
 
 condition : m -> Html msg
 condition model =
     p [ class "weather-condition" ]
       [ text "Mostly Cloudy" ]
+
 
 conditionRow : String -> String -> Html msg
 conditionRow key value =
