@@ -52,3 +52,34 @@
 }
 
 
+
+/* --------- WEATHER -------- */
+.weather-box {
+    margin: 0px 20px;
+    width: 400px;
+    background: grey; 
+    padding: 10px;
+
+    color: black;
+}
+
+.weather-frame {
+    border: 2px solid black;
+    position: relative;
+    padding-top: 20px;
+}
+
+.weather-frame h1 {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    padding: 0px 4px;
+    background: grey;
+}
+
+.weather-frame .weather-astronomy {
+    width: 100%;
+
+}
+
+
