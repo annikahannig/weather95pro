@@ -8,7 +8,7 @@ module App exposing (main)
 import Html exposing (Html, div, p, text, program)
 import Layout.Components exposing (application)
 
-import Weather
+import Weather exposing (weatherFrame)
 
 
 -- MESSAGES
@@ -42,8 +42,7 @@ subscriptions model = Sub.none
 mainView : Model -> Html Msg
 mainView model =
     div []
-        [ text "Fooo"
-        , text (toString model.foo)
+        [ weatherFrame model 
         ]
 
 
