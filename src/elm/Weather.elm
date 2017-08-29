@@ -8,38 +8,9 @@ import Http
 import Html exposing (Html, p, div, h1, img, text, hr, table, tr, td, th)
 import Html.Attributes exposing (class)
 
+import Time.Format
 
--- TYPES
-
-type alias Location =
-    { city : String
-    , country : String
-    , region : String
-    }
-
-
-type alias Wind =
-    { chill : String
-    , direction : String
-    , speed : String
-    }
-
-type alias Atmosphere =
-    { humidity : String
-    , pressure : String
-    }
-
-type alias Astronomy =
-    { sunriseAt : String
-    , sunsetAt : String
-    }
-
-type alias Condition =
-    { code : String
-    , temperature : String
-    , text : String
-    }
-
+import Model exposing (Model)
 
 
 -- API
@@ -68,12 +39,14 @@ locationQueryApiUrl location =
 
 -- VIEWS
 
-weatherFrame : m -> Html msg
+weatherFrame : Model -> Html msg
 weatherFrame model =
     div [ class "weather-box" ]
         [ div [ class "weather-frame" ]
               [ h1 [] [text "Berlin, Germany"]
               , dateTime model
+              , hr [] []
+              , condition model
               , hr [] []
               , conditionsTable model
               , hr [] []
@@ -82,11 +55,16 @@ weatherFrame model =
         ]
 
 
-dateTime : m -> Html msg
+dateTime : Model -> Html msg
 dateTime model =
     p [ class "datetime" ]
-      [ text "Tue Aug 29 19:23:05 2017" ]
+      [ text (Time.Format.format "%a %b %d %H:%M:%S %Y" model.now) ]
 
+
+condition : m -> Html msg
+condition model =
+    p [ class "weather-condition" ]
+      [ text "Mostly Cloudy" ]
 
 conditionRow : String -> String -> Html msg
 conditionRow key value =
@@ -96,7 +74,7 @@ conditionRow key value =
        ]
 
 
-conditionsTable : m -> Html msg
+conditionsTable : Model -> Html msg
 conditionsTable model =
     table [ class "weather-conditions" ]
           [ conditionRow "Temperature:" "23.2"

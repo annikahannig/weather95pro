@@ -5,26 +5,21 @@ module App exposing (main)
 
 
 -- IMPORTS
+import Time exposing (Time, every, second)
 import Html exposing (Html, div, p, text, program)
 import Layout.Components exposing (application)
 
 import Weather exposing (weatherFrame)
 
 
+import Model exposing (Model, initialModel)
+
+
 -- MESSAGES
 type Msg
     = Nop
-
-
--- MODEL
-type alias Model =
-    { foo : Int }
-
-
-initialModel : Model
-initialModel =
-    { foo = 23 }
-
+    | Tick Time
+    
 
 
 -- INITIALIZATION
@@ -35,7 +30,8 @@ init =
 
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
-subscriptions model = Sub.none
+subscriptions model =
+    every second Tick
 
 
 -- VIEW
@@ -56,6 +52,7 @@ view model =
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
+        Tick t -> ({model | now = t }, Cmd.none)
         Nop -> (model, Cmd.none)
 
 
