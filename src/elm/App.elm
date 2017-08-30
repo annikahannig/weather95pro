@@ -13,13 +13,8 @@ import Weather exposing (weatherFrame)
 
 
 import Model exposing (Model, initialModel)
+import Messages exposing (Msg)
 
-
--- MESSAGES
-type Msg
-    = Nop
-    | Tick Time
-    
 
 
 -- INITIALIZATION
@@ -31,7 +26,7 @@ init =
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    every second Tick
+    every second Messages.Tick
 
 
 -- VIEW
@@ -52,8 +47,8 @@ view model =
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
-        Tick t -> ({model | now = t }, Cmd.none)
-        Nop -> (model, Cmd.none)
+        Messages.Tick t -> ({model | now = t }, Cmd.none)
+        Messages.Nop -> (model, Cmd.none)
 
 
 -- APPLICATION

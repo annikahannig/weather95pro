@@ -1,7 +1,12 @@
 
-module Model exposing (Model, initialModel)
+module Model exposing ( Model
+                      , Weather
+                      , initialModel
+                      )
 
+import RemoteData exposing (WebData)
 import Time exposing (Time)
+
 
 -- TYPES
 
@@ -35,15 +40,24 @@ type alias Condition =
     }
 
 
+type alias Weather =
+    { location : Location
+    , wind : Wind
+    , atmosphere : Atmosphere
+    , astronomy : Astronomy
+    , condition : Condition
+    }
+
+
 -- MODEL
 type alias Model =
-    { foo : Int
+    { weather : Weather
     , now : Time
     }
 
 initialModel : Model
 initialModel =
-    { foo = 23
+    { weather = WebData Weather
     , now = 0 
     }
 

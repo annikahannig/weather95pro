@@ -5,18 +5,28 @@
 module Weather exposing (weatherFrame)
 
 import Http
-import Html exposing (Html, p, div, h1, img, text, hr, table, tr, td, th)
+import Html exposing ( Html
+                     , p
+                     , div
+                     , h1
+                     , img
+                     , text
+                     , hr
+                     , table
+                     , tr
+                     , td
+                     , th
+                     )
+
 import Html.Attributes exposing (class)
 
 import Time.Format
 
 import Model exposing (Model)
 
-
--- API
+-- JSON API
 apiBase : String
 apiBase = "https://query.yahooapis.com/v1/public/yql"
-
 
 locationQuery : String -> String
 locationQuery location =
