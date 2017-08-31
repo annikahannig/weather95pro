@@ -149,7 +149,7 @@ textBox content =
 
 weatherDetails : Time -> Weather -> List (Html Msg)
 weatherDetails time weather =
-    [ h1 [] [text "Berlin, Germany"]
+    [ h1 [] [text (weather.location.city ++", " ++ weather.location.country)]
     , dateTime time 
     , hr [] []
     , condition weather.condition
@@ -162,9 +162,9 @@ weatherDetails time weather =
 
 
 dateTime : Time -> Html msg
-dateTime model =
+dateTime t =
     p [ class "datetime" ]
-      [ case model.now of 
+      [ case t of 
             0 -> text ""
             t -> text (Time.Format.format "%a %b %d %H:%M:%S %Y" t) ]
 
@@ -183,23 +183,23 @@ conditionRow key value =
        ]
 
 
-conditionsTable : Model -> Html msg
-conditionsTable model =
+conditionsTable : Weather -> Html msg
+conditionsTable weather =
     table [ class "weather-conditions" ]
-          [ conditionRow "Temperature:" "23.2"
-          , conditionRow "Humidity:" "42"
-          , conditionRow "Pressure:" "42"
+          [ conditionRow "Temperature:" (weather.condition.temperature ++ " °C")
+          , conditionRow "Humidity:"    (weather.atmosphere.humidity   ++ "%")
+          , conditionRow "Pressure:"    (weather.atmosphere.pressure   ++ " mbar")
           ]
 
 
-astronomyTable : Model -> Html msg
-astronomyTable model =
+astronomyTable : Weather -> Html msg
+astronomyTable weather =
     table [ class "weather-astronomy" ]
           [ tr []
                [ th [] [text "Sunrise:"]
-               , td [] [text "09:23 am"]
+               , td [] [text weather.astronomy.sunriseAt]
                , th [] [text "Sunset:"]
-               , td [] [text "23:42 pm"]
+               , td [] [text weather.astronomy.sunsetAt]
                ]
           ]
 
