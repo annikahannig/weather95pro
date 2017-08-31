@@ -1,10 +1,15 @@
 
 module Model exposing ( Model
                       , Weather
+                      , Location
+                      , Wind
+                      , Atmosphere
+                      , Astronomy
+                      , Condition
                       , initialModel
                       )
 
-import RemoteData exposing (WebData)
+import RemoteData exposing (RemoteData, WebData)
 import Time exposing (Time)
 
 
@@ -51,13 +56,13 @@ type alias Weather =
 
 -- MODEL
 type alias Model =
-    { weather : Weather
+    { weather : WebData Weather
     , now : Time
     }
 
 initialModel : Model
 initialModel =
-    { weather = WebData Weather
+    { weather = RemoteData.Loading 
     , now = 0 
     }
 
