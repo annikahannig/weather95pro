@@ -28,7 +28,9 @@ init =
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    every second Messages.Tick
+    Sub.batch [ every second Messages.Tick
+              , every (60*second) Messages.UpdateWeatherData
+              ]
 
 
 -- VIEW
@@ -51,6 +53,10 @@ update msg model =
     case msg of
         Messages.Tick t -> ({model | now = t }, Cmd.none)
         Messages.Nop -> (model, Cmd.none)
+
+        Messages.UpdateWeatherData _ -> ( model
+                                        , getLocationWeather "Berlin, Germany"
+                                        )
 
         Messages.WeatherResponse weather -> ( {model | weather = weather}
                                             , Cmd.none

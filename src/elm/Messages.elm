@@ -10,5 +10,6 @@ type Msg
     = Nop
     | WeatherResponse (WebData Weather)
     | Tick Time
+    | UpdateWeatherData Time
     
 
